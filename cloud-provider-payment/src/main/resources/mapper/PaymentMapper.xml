@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.george.springcloud.dao.PaymentDao">
+
+    <!--
+        注意yml中:type-aliases-package: com.george.springcloud.entities  # 该包所有Entity类，取默认别名
+        useGeneratedKeys="true",keyProperty="id"
+            设置插入成功时使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty设置的领域模型属性中
+    -->
+    <insert id="create" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial) values(#{serial});
+    </insert>
+
+    <!--定义一个结果接和实体类的映射表-->
+    <resultMap id="BaseResultMap" type="com.george.springcloud.entities.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <id column="serial" property="serial" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
+        select * from payment where id=#{id};
+    </select>
+
+</mapper>

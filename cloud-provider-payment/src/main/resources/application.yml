@@ -1,0 +1,20 @@
+# 微服务端口号
+server:
+  port: 8001
+
+# 微服务名称
+spring:
+  application:
+    name: cloud-payment-service
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource      # 数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver     # mysql驱动包
+    url: jdbc:mysql://localhost:3306/db2019?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  # 扫描类路径下mapper文件夹下的.xml配置文件
+  type-aliases-package: com.george.springcloud.entities  # 该包所有Entity类，取默认别名

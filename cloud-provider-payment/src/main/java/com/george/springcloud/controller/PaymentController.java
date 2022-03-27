@@ -4,10 +4,7 @@ import com.george.springcloud.entities.CommonResult;
 import com.george.springcloud.entities.Payment;
 import com.george.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -20,7 +17,7 @@ public class PaymentController {
 
     //传给前端JSON
     @PostMapping(value = "/payment/create")    //写操作POST
-    public CommonResult create(Payment payment){
+    public CommonResult create(@RequestBody Payment payment){
 
         //由于在mapper.xml配置了useGeneratedKeys="true" keyProperty="id"，会将自增的id封装到实体类中
         int result = paymentService.create(payment);
